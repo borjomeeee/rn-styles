@@ -1,0 +1,29 @@
+{
+  "name": "@borjomeeee/rn-styles",
+  "version": "0.0.1",
+  "description": "react-native tachyons-like styles lib",
+  "type": "module",
+  "scripts": {
+    "start": "tsc && node --es-module-specifier-resolution=node dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "react",
+    "react-native",
+    "tachyons"
+  ],
+  "author": "borjomeeee",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/memoizee": "^0.4.5",
+    "@types/react-native": "^0.64.8",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "memoizee": "^0.4.15"
+  },
+  "directories": {
+    "example": "example"
+  }
+}
