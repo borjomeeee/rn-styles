@@ -27,7 +27,7 @@ const AwesomeStylingScreen = () => {
   return (
     <RN.View style={s(`fill aic jcc`)}>
       <RN.View style={s(`w:100 h:100 bgc:#ff0000`)}>
-        <RN.Text style={s(`fsz24 c:black`)}>Hello, world!</RN.Text>
+        <RN.Text style={s(`fsz:24 c:black`)}>Hello, world!</RN.Text>
       </RN.View>
     </RN.View>
   );
