@@ -1,6 +1,6 @@
 # rn-styles
 
-This lib i use in my work for easy styling components in react-native. This idea i took from <https://github.com/farwayer/react-native-tstyles> 
+This lib i use in my work for easy styling components in react-native. This idea i took from <https://github.com/farwayer/react-native-tstyles>
 
 ## Installation
 
@@ -11,30 +11,32 @@ yarn add @borjomeeee/rn-styles
 
 ## Example of usage
 
-Now lib support number and strings parameters <b>(String parameter can be only a color - #ffffff or #ffffff90 format!)</b>
+<b>Note!</b> colors can only satisfy #fff, #ffffff, #ffffff00 tempaltes
 
 ```jsx
-import React from "react"
-import * as RN from "react-native"
+import React from "react";
+import * as RN from "react-native";
 
-import s from "@borjomeeee/rn-styles"
+import s, { configureVariables } from "@borjomeeee/rn-styles";
 
-const TEXT_COLOR = '#ffffff' // also can use #ffffff90 syntax
+configureVariables({
+  black: "#000000",
+});
 
 const AwesomeStylingScreen = () => {
-    return (
-        <RN.View style={s(`fill aic jcc`)}>
-            <RN.View style={s(`w100 h100 bgc#000000`)}>
-                <RN.Text style={s(`fsz24 c${TEXT_COLOR}`)}>Hello, world!</RN.Text>
-            </RN.View>
-        </RN.View>
-    );
-}
+  return (
+    <RN.View style={s(`fill aic jcc`)}>
+      <RN.View style={s(`w:100 h:100 bgc:#ff0000`)}>
+        <RN.Text style={s(`fsz24 c:black`)}>Hello, world!</RN.Text>
+      </RN.View>
+    </RN.View>
+  );
+};
 ```
 
 ## TODO
 
-- [ ] Decimal numbers support
+- [x] Decimal numbers support
 - [ ] Extend default list styles
 - [ ] Work with colors more nicely
 - [ ] Conduct perfomance testing
