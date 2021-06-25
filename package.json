@@ -4,7 +4,8 @@
   "description": "react-native tachyons-like styles lib",
   "type": "module",
   "scripts": {
-    "start": "tsc && node --es-module-specifier-resolution=node dist/index.js"
+    "build": "tsc",
+    "start": "node --es-module-specifier-resolution=node dist/index.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,10 +14,11 @@
     "react-native",
     "tachyons"
   ],
-  "files": ["src/*.ts"],
+  "files": [
+    "src/*.ts"
+  ],
   "author": "borjomeeee",
   "license": "MIT",
-
   "homepage": "https://github.com/borjomeeee/rn-styles",
   "repository": {
     "url": "https://github.com/borjomeeee/rn-styles",
