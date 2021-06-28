@@ -9,8 +9,9 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {SafeAreaView, StatusBar, useColorScheme, View} from 'react-native';
 
+import s from '@borjomeeee/rn-styles';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
 
       {/* import s while package was published */}
-      {/* <View style={s(`h40 w40 bgc#000000`)} /> */}
+      <View style={s('h40 w40 bgc#000000')} />
     </SafeAreaView>
   );
 };
