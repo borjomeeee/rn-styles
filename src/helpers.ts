@@ -1,5 +1,6 @@
 import memo from "memoizee";
 import { TextStyles, ViewStyles } from "./styles/index";
+import { createStyleSheet } from "./utils";
 
 const Styles = Object.assign({}, ViewStyles, TextStyles);
 const Variables = {};
@@ -33,4 +34,11 @@ export const s = memo(
 
 export const configureVariables = (vars: Record<string, string | number>) => {
   Object.assign(Variables, vars);
+};
+
+export const configureStylesheet = (
+  ...params: Parameters<typeof createStyleSheet>
+) => {
+  const stylesheet = createStyleSheet(...params);
+  Object.assign(Styles, stylesheet);
 };

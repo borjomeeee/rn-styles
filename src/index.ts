@@ -1,4 +1,8 @@
-export { s as default, configureVariables } from "./helpers";
+export {
+  s as default,
+  configureVariables,
+  configureStylesheet,
+} from "./helpers";
 
 // -  Добавить тестов
 // -  Добавить недостающую типизацию

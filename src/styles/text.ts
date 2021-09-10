@@ -1,3 +1,4 @@
+import { TextStyle } from "react-native";
 import {
   compose,
   createStyleSheet,
@@ -7,6 +8,7 @@ import {
 
 export default createStyleSheet({
   c: compose((color) => ({ color }), parseOnlyColor),
+  bold: () => ({ fontWeight: "bold" }),
 
   ff: (family) => ({ fontFamily: family }),
   fsz: compose((size) => ({ fontSize: size }), parseOnlyFloat),
