@@ -14,7 +14,7 @@ export const s = memo(
         styleValue = (Variables as any)[styleValue] ?? styleValue;
 
         if (!(styleName in Styles))
-          throw new Error(`Style with name '${styleName}' is not recognized!`);
+          console.warn(`Style with name '${styleName}' is not recognized!`);
 
         try {
           const processedStyleValue = (Styles as any)[styleName](styleValue);
