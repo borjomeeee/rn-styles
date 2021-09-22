@@ -7,7 +7,8 @@ const Variables = {};
 export const s = memo(
   function (styleLine: string) {
     return styleLine
-      .split(" ")
+      .trim()
+      .split(/\s+/)
       .map((style) => {
         let [styleName, styleValue] = style.split(":");
         styleValue = (Variables as any)[styleValue] ?? styleValue;
@@ -24,7 +25,7 @@ export const s = memo(
 
           return processedStyleValue;
         } catch (e) {
-          throw new Error(`Get error on set styles '${style}': ` + e.message);
+          console.warn(`Get error on set styles '${style}': ` + e.message);
         }
       })
       .reduce((acc, item) => ({ ...acc, ...item }));
