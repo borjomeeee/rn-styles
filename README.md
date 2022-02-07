@@ -34,6 +34,10 @@ const AwesomeScreen = () => {
 };
 ```
 
+## Styles
+
+Whole bunch of style presets you can find in ```src/styles``` folder.
+
 ## Configure
 
 By functions `configureStylesheet` and `configureVariables` you can set your own styles and values. For example:
