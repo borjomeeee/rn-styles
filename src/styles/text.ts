@@ -1,14 +1,9 @@
-import { TextStyle } from "react-native";
-import {
-  compose,
-  createStyleSheet,
-  parseOnlyColor,
-  parseOnlyFloat,
-} from "../utils";
+import { compose, createStyleSheet } from "../utils";
+import { parseOnlyColor, parseOnlyEmptyString, parseOnlyFloat } from "../parse";
 
 export default createStyleSheet({
   c: compose((color) => ({ color }), parseOnlyColor),
-  bold: () => ({ fontWeight: "bold" }),
+  bold: compose(() => ({ fontWeight: "bold" }), parseOnlyEmptyString),
 
   ff: (family) => ({ fontFamily: family }),
   fsz: compose((size) => ({ fontSize: size }), parseOnlyFloat),
@@ -16,7 +11,7 @@ export default createStyleSheet({
   ls: compose((size) => ({ letterSpacing: size }), parseOnlyFloat),
   lh: compose((size) => ({ lineHeight: size }), parseOnlyFloat),
 
-  tac: () => ({ textAlign: "center" }),
-  tal: () => ({ textAlign: "left" }),
-  tar: () => ({ textAlign: "right" }),
+  tac: compose(() => ({ textAlign: "center" }), parseOnlyEmptyString),
+  tal: compose(() => ({ textAlign: "left" }), parseOnlyEmptyString),
+  tar: compose(() => ({ textAlign: "right" }), parseOnlyEmptyString),
 });

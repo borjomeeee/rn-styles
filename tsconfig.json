@@ -72,5 +72,13 @@
   },
 
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "example", "**/*.spec.ts"]
+  "exclude": ["node_modules", "example", "**/*.spec.ts"],
+
+  "ts-node": {
+    // modelled after "files", "include", "exclude" configs: can use globs, all relative to tsconfig.json
+    // modelled after gitignore / gitattributes: later entries override earlier ones
+    "moduleTypes": {
+      "jest.config.ts": "cjs"
+    }
+  }
 }

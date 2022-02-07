@@ -1,39 +1,15 @@
-import type { FlexStyle, TextStyle, ViewStyle, ImageStyle } from "react-native";
+import { IStyleSheet, IStyles } from "./types";
+export { or } from "./or";
 
-export type Styles = FlexStyle | TextStyle | ViewStyle | ImageStyle;
-const colorRegex = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/i;
-export function parseOnlyFloat(value: any) {
-  if (isNaN(value))
-    throw new Error(`Value '${value}' is not a decimal number!`);
-  return parseFloat(value);
-}
+export type AnyFunc = (...args: any) => any;
 
-export function parseOnlyInteger(value: any) {
-  if (isNaN(value) || Math.floor(value) != value)
-    throw new Error(`Value '${value}' is not a integer number!`);
-  return parseFloat(value);
-}
-
-export function parseOnlyFloatToPercent(value: any) {
-  if (isNaN(value))
-    throw new Error(`Value '${value}' is not a decimal number!`);
-  return value + "%";
-}
-
-export function parseOnlyColor(value: any) {
-  if (!colorRegex.test(value))
-    throw new Error(
-      `Value '${value}' is not a hex color (must be satisfy to regex - /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/i)!`
-    );
-  return value;
-}
-
-export const compose =
-  <T, U, K = Styles>(func1: (arg: U) => K, func2: (arg: T) => U) =>
-  (arg: T) => {
-    return func1(func2(arg));
+export const compose = <T, U, K = IStyles>(
+  func1: (...args: U[]) => K,
+  func2: (...args: T[]) => U
+) => {
+  return (...args: T[]) => {
+    return func1(func2(...args));
   };
+};
 
-export const createStyleSheet = (
-  styles: Record<string, (arg: string) => Styles>
-) => styles;
+export const createStyleSheet = (stylesheet: IStyleSheet) => stylesheet;

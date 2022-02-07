@@ -1,11 +1,12 @@
 {
   "name": "@borjomeeee/rn-styles",
-  "version": "2.0.7",
+  "version": "2.0.9",
   "description": "react-native tachyons-like styles lib",
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node --es-module-specifier-resolution=node dist/index.js"
+    "start": "node --es-module-specifier-resolution=node dist/index.js",
+    "test": "jest"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,12 +26,20 @@
     "type": "git"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.0",
     "@types/react-native": "^0.64.8",
+    "babel-jest": "^27.5.0",
+    "jest": "^27.5.0",
+    "ts-node": "^10.4.0",
     "typescript": "^4.3.2"
   },
   "dependencies": {
-    "memoizee": "^0.4.15",
-    "@types/memoizee": "^0.4.5"
+    "@types/memoizee": "^0.4.5",
+    "memoizee": "^0.4.15"
   },
   "directories": {
     "example": "example"

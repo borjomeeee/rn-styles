@@ -1,29 +1,37 @@
+import { createStyleSheet, compose, or } from "../utils";
+
 import {
-  createStyleSheet,
-  compose,
   parseOnlyFloat,
   parseOnlyInteger,
   parseOnlyColor,
-} from "../utils";
+  parseOnlyPercent,
+  parseOnlyEmptyString,
+} from "../parse";
 
 export default createStyleSheet({
-  acfs: () => ({ alignContent: "flex-start" }),
-  acfe: () => ({ alignContent: "flex-end" }),
-  acc: () => ({ alignContent: "center" }),
+  acfs: compose(() => ({ alignContent: "flex-start" }), parseOnlyEmptyString),
+  acfe: compose(() => ({ alignContent: "flex-end" }), parseOnlyEmptyString),
+  acc: compose(() => ({ alignContent: "center" }), parseOnlyEmptyString),
 
-  aifs: () => ({ alignItems: "flex-start" }),
-  aife: () => ({ alignItems: "flex-end" }),
-  aic: () => ({ alignItems: "center" }),
+  aifs: compose(() => ({ alignItems: "flex-start" }), parseOnlyEmptyString),
+  aife: compose(() => ({ alignItems: "flex-end" }), parseOnlyEmptyString),
+  aic: compose(() => ({ alignItems: "center" }), parseOnlyEmptyString),
 
-  asfs: () => ({ alignSelf: "flex-start" }),
-  asfe: () => ({ alignSelf: "flex-end" }),
-  asc: () => ({ alignSelf: "center" }),
+  asfs: compose(() => ({ alignSelf: "flex-start" }), parseOnlyEmptyString),
+  asfe: compose(() => ({ alignSelf: "flex-end" }), parseOnlyEmptyString),
+  asc: compose(() => ({ alignSelf: "center" }), parseOnlyEmptyString),
 
-  jcfs: () => ({ justifyContent: "flex-start" }),
-  jcfe: () => ({ justifyContent: "flex-end" }),
-  jcc: () => ({ justifyContent: "center" }),
-  jcsb: () => ({ justifyContent: "space-between" }),
-  jcsa: () => ({ justifyContent: "space-around" }),
+  jcfs: compose(() => ({ justifyContent: "flex-start" }), parseOnlyEmptyString),
+  jcfe: compose(() => ({ justifyContent: "flex-end" }), parseOnlyEmptyString),
+  jcc: compose(() => ({ justifyContent: "center" }), parseOnlyEmptyString),
+  jcsb: compose(
+    () => ({ justifyContent: "space-between" }),
+    parseOnlyEmptyString
+  ),
+  jcsa: compose(
+    () => ({ justifyContent: "space-around" }),
+    parseOnlyEmptyString
+  ),
 
   bw: compose((size) => ({ borderWidth: size }), parseOnlyFloat),
   btw: compose((size) => ({ borderTopWidth: size }), parseOnlyFloat),
@@ -40,32 +48,53 @@ export default createStyleSheet({
   bc: compose((color) => ({ borderColor: color }), parseOnlyColor),
   bgc: compose((color) => ({ backgroundColor: color }), parseOnlyColor),
 
-  none: () => ({ display: "none" }),
-  fill: () => ({ flex: 1 }),
+  none: compose(() => ({ display: "none" }), parseOnlyEmptyString),
+  fill: compose(() => ({ flex: 1 }), parseOnlyEmptyString),
 
-  row: () => ({ flexDirection: "row" }),
-  rowr: () => ({ flexDirection: "row-reverse" }),
-  col: () => ({ flexDirection: "column" }),
-  colr: () => ({ flexDirection: "column-reverse" }),
+  row: compose(() => ({ flexDirection: "row" }), parseOnlyEmptyString),
+  rowr: compose(() => ({ flexDirection: "row-reverse" }), parseOnlyEmptyString),
+  col: compose(() => ({ flexDirection: "column" }), parseOnlyEmptyString),
+  colr: compose(
+    () => ({ flexDirection: "column-reverse" }),
+    parseOnlyEmptyString
+  ),
 
   flex: compose((size) => ({ flex: size }), parseOnlyInteger),
   grow: compose((size) => ({ flexGrow: size }), parseOnlyInteger),
   shrink: compose((size) => ({ flexShrink: size }), parseOnlyInteger),
 
-  fww: () => ({ flexWrap: "wrap" }),
+  fww: compose(() => ({ flexWrap: "wrap" }), parseOnlyEmptyString),
 
-  h: compose((size) => ({ height: size }), parseOnlyFloat),
-  minH: compose((size) => ({ minHeight: size }), parseOnlyFloat),
-  maxH: compose((size) => ({ maxHeight: size }), parseOnlyFloat),
-  fullH: () => ({ height: "100%" }),
+  h: compose(
+    (size: string | number) => ({ height: size }),
+    or(parseOnlyFloat, parseOnlyPercent)
+  ),
+  minH: compose(
+    (size: string | number) => ({ minHeight: size }),
+    or(parseOnlyFloat, parseOnlyPercent)
+  ),
+  maxH: compose(
+    (size: string | number) => ({ maxHeight: size }),
+    or(parseOnlyFloat, parseOnlyPercent)
+  ),
+  fullH: compose(() => ({ height: "100%" }), parseOnlyEmptyString),
 
-  w: compose((size) => ({ width: size }), parseOnlyFloat),
-  minW: compose((size) => ({ minWidth: size }), parseOnlyFloat),
-  maxW: compose((size) => ({ maxWidth: size }), parseOnlyFloat),
-  fullW: () => ({ width: "100%" }),
+  w: compose(
+    (size: string | number) => ({ width: size }),
+    or(parseOnlyFloat, parseOnlyPercent)
+  ),
+  minW: compose(
+    (size: string | number) => ({ minWidth: size }),
+    or(parseOnlyFloat, parseOnlyPercent)
+  ),
+  maxW: compose(
+    (size: string | number) => ({ maxWidth: size }),
+    or(parseOnlyFloat, parseOnlyPercent)
+  ),
+  fullW: compose(() => ({ width: "100%" }), parseOnlyEmptyString),
 
-  abs: () => ({ position: "absolute" }),
-  rel: () => ({ position: "relative" }),
+  abs: compose(() => ({ position: "absolute" }), parseOnlyEmptyString),
+  rel: compose(() => ({ position: "relative" }), parseOnlyEmptyString),
 
   t: compose((size) => ({ top: size }), parseOnlyFloat),
   r: compose((size) => ({ right: size }), parseOnlyFloat),
@@ -88,13 +117,13 @@ export default createStyleSheet({
   mv: compose((size) => ({ marginVertical: size }), parseOnlyFloat),
   mh: compose((size) => ({ minHeight: size }), parseOnlyFloat),
 
-  ofv: () => ({ overflow: "visible" }),
-  ofh: () => ({ overflow: "hidden" }),
+  ofv: compose(() => ({ overflow: "visible" }), parseOnlyEmptyString),
+  ofh: compose(() => ({ overflow: "hidden" }), parseOnlyEmptyString),
 
   zi: compose((size) => ({ zIndex: size }), parseOnlyInteger),
   o: compose((size) => ({ opacity: size }), parseOnlyFloat),
 
-  cover: () => ({ resizeMode: "cover" }),
-  contain: () => ({ resizeMode: "contain" }),
-  center: () => ({ resizeMode: "center" }),
+  cover: compose(() => ({ resizeMode: "cover" }), parseOnlyEmptyString),
+  contain: compose(() => ({ resizeMode: "contain" }), parseOnlyEmptyString),
+  center: compose(() => ({ resizeMode: "center" }), parseOnlyEmptyString),
 });

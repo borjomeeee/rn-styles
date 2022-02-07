@@ -11,8 +11,6 @@ yarn add @borjomeeee/rn-styles
 
 ## Example of usage
 
-<b>Note!</b> colors can only satisfy #fff, #ffffff, #ffffff00 tempaltes
-
 ```jsx
 import React from "react";
 import * as RN from "react-native";
@@ -20,23 +18,60 @@ import * as RN from "react-native";
 import s, { configureVariables } from "@borjomeeee/rn-styles";
 
 configureVariables({
+  white: "ffffff",
   black: "#000000",
 });
 
-const AwesomeStylingScreen = () => {
+const AwesomeScreen = () => {
+  const isBlackTheme = true;
   return (
     <RN.View style={s(`fill aic jcc`)}>
-      <RN.View style={s(`w:100 h:100 bgc:#ff0000`)}>
-        <RN.Text style={s(`fsz:24 c:black`)}>Hello, world!</RN.Text>
+      <RN.View style={s(`w:100 h:100 bgc:white`, isBlackTheme && `bgc:black`)}>
+        <RN.Text style={s(`fsz:24 c:white`)}>Hello, world!</RN.Text>
       </RN.View>
     </RN.View>
   );
 };
 ```
 
+## Configure
+
+By functions `configureStylesheet` and `configureVariables` you can set your own styles and values. For example:
+
+```jsx
+  s(`shadow`) -> Error // style with name 'shadow' not exist
+  s(`box:red`) -> Error // style with name 'shadow' not exist and style value 'red' is incorrect
+
+  configureStylesheet({
+    shadow: () => ({ shadowOpacity: 1}),
+    box: (styleValue: string) => ({
+      borderWidth: 1,
+      borderColor: styleValue
+    })
+  })
+
+  configureVariables({
+    red: "#ff0000"
+  })
+
+  s(`shadow`) -> { shadowOpacity: 1 }
+  s(`box:red`) -> { borderWidth: 1, borderColor: "#ff0000" }
+```
+
+## Helpers
+
+There are some useful function you can use in your projects:
+
+| Name                   | Description                                                                                                                |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `parseOnlyColor`       | string -> color (#fff \| #ffffff \| #ffffff00)                                                                             |
+| `parseOnlyEmptyString` | Prevent passing values to non-parameters style constructors <br/>(ex: `` s(`fill`) -> { flex: 1}, s(`fill:1`) -> Error ``) |
+| `parseOnlyInteger`     | string -> number (exclude float numbers)                                                                                   |
+| `parseOnlyFloat`       | string -> number (include float numbers)                                                                                   |
+| `parseOnlyPercent`     | string -> string (check that the string is a percentage, ex: `'100%' - good, '100' - bad`                                  |
+
+
+
 ## TODO
 
-- [x] Decimal numbers support
-- [ ] Extend default list styles
-- [ ] Work with colors more nicely
-- [ ] Conduct perfomance testing
+- [ ] Add native theme support

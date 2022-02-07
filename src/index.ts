@@ -1,8 +1,13 @@
+export { s as default } from "./main";
+export { configureStylesheet, configureVariables } from "./helpers";
+
 export {
-  s as default,
-  configureVariables,
-  configureStylesheet,
-} from "./helpers";
+  parseOnlyColor,
+  parseOnlyEmptyString,
+  parseOnlyFloat,
+  parseOnlyInteger,
+  parseOnlyPercent,
+} from "./parse";
 
 // -  Добавить тестов
 // -  Добавить недостающую типизацию
