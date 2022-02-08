@@ -1,6 +1,6 @@
 {
   "name": "@borjomeeee/rn-styles",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "react-native tachyons-like styles lib",
   "type": "module",
   "scripts": {
