@@ -1,4 +1,4 @@
-import { configureStylesheet, configureVariables } from "../src/helpers";
+import { configureStylesheet, configureVariables } from "../dist/helpers";
 
 import {
   parseOnlyColor,
@@ -7,8 +7,8 @@ import {
   parseOnlyInteger,
   parseOnlyPercent,
   parseStringToStyle,
-} from "../src/parse";
-import { compose } from "../src/utils";
+} from "../dist/parse";
+import { compose } from "../dist/utils";
 
 describe("'parseOnlyInteger' tests", () => {
   const errorConstructor = (value) =>

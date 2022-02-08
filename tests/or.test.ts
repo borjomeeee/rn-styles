@@ -1,4 +1,4 @@
-import { or } from "../src/or";
+import { or } from "../dist/or";
 
 const errorFunc = () => {
   throw new Error("Damn!");

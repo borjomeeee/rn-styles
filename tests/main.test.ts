@@ -1,4 +1,4 @@
-import s from "../src";
+import s from "../dist";
 
 describe("'s' function tests", () => {
   beforeAll(() => {
